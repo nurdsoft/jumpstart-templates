@@ -1,0 +1,23 @@
+name: Golang
+
+# This is used to check if it exists on the system
+binary: go
+
+commands:
+- go mod init {{codeprovider}}/{{namespace}}/{{name}}
+
+# Default pipeline configuration
+pipeline:
+  setup:
+  - FROM golang
+  - WORKDIR /src
+  - COPY go.* ./
+  - RUN go mod download
+  - COPY . .
+  build:
+  - RUN make releases/{{name}}
+
+  install:
+  - FROM alpine
+  - COPY --from=0 /src/releases/{{name}} /
+  run: /{{name}}

@@ -1,0 +1,28 @@
+name: "Golang: Gin"
+
+# This is used to check if it exists on the system
+binary: go
+
+commands:
+- go mod init {{codeprovider}}/{{namespace}}/{{name}}
+- go get -u github.com/gin-gonic/gin
+
+# Default pipeline configuration
+pipeline:
+  # Setup everything needed in order to perform the build
+  setup:
+  - FROM golang
+  - WORKDIR /src
+  - COPY go.* ./
+  - RUN go mod download
+  - COPY . .
+  # Perform the build
+  build:
+  - RUN make releases/{{name}}
+
+  # Install the build in fresh clean alpine container
+  install:
+  - FROM alpine
+  - COPY --from=0 /src/releases/{{name}} /
+  # Specify how the build should be run
+  run: /{{name}}
