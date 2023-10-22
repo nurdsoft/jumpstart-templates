@@ -1,0 +1,6 @@
+name: Rust
+
+binary: cargo
+
+commands:
+- cargo init --vcs none --name {{name}}
