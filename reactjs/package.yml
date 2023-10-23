@@ -1,0 +1,21 @@
+name: "React"
+
+binary: node
+
+commands:
+  - npm create vite@latest default --- --template react
+  - cp -r ./default/ ./
+  - rm -rf ./default
+
+pipeline:
+  setup:
+    - FROM node
+    - WORKDIR /src
+    - COPY . ./
+  build:
+    - RUN npm install -f && npm run build
+  install:
+    - FROM nginx:stable-alpine
+    - COPY --from=0 /src/dist /usr/share/nginx/html
+    - EXPOSE 80
+  run: '["nginx", "-g", "daemon off;"]'
