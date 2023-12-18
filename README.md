@@ -1,6 +1,6 @@
 # Jumpstart Templates
 
-Welcome to the Jumpstart Templates repository! This repository contains a collection of templates for various frameworks and languages to help you kickstart your projects with ease using the Jumpstart tool.
+Welcome to the Jumpstart Templates repository! This repository contains a collection of templates for various frameworks and languages to help you kickstart your projects with ease using the Jumpstart  CLI & VSCode extension.
 
 
 ## Contribution Guidelines
