@@ -7,7 +7,6 @@ Welcome to the Jumpstart Templates repository! This repository contains a collec
 We welcome contributions to the Jumpstart Templates repository! Follow these guidelines to contribute:
 
 1. Fork the repository to your GitHub account.
-
 2. Create a new branch for your feature or bug fix with following branch name convention ```feat/framework-name``` or ```fix/framework-name```.
 3. Make your changes to the templates or add new templates. Ensure to update the corresponding YAML files with accurate information.
 4. Commit your changes with clear and concise messages.
