@@ -15,11 +15,11 @@ clean:
 	rm -rf $(RELEASES_DIR)
 
 $(RELEASES_DIR)/$(NAME):
-	CGO_ENABLED=0 go build -o $@ $(BUILD_OPTS) cmd/	
+	CGO_ENABLED=0 go build -o $@ $(BUILD_OPTS) cmd/main.go
 
 $(RELEASES_DIR)/$(NAME)-%:
-	GOOS=$* CGO_ENABLED=0 GOARCH=amd64 go build -o $@ $(BUILD_OPTS) cmd/
+	GOOS=$* CGO_ENABLED=0 GOARCH=amd64 go build -o $@ $(BUILD_OPTS) cmd/main.go
 
 .PHONY: docker
-docker
+docker:
 	docker build . -t $(NAME) -t $(NAME):$(VERSION)-$(COMMIT) -t $(NAME):$(VERSION) 
