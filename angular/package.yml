@@ -1,0 +1,22 @@
+name: "Angular"
+
+binary: node
+
+commands:
+  - command -v ng >/dev/null 2>&1 || npm install -g @angular/cli
+  - ng new default --interactive=false --routing=true
+  - cp -r ./default/ ./
+  - rm -rf ./default
+
+pipeline:
+  setup:
+    - FROM node
+    - WORKDIR /src
+    - COPY . ./
+  build:
+    - RUN npm install -f && npm run build
+  install:
+    - FROM nginx:stable-alpine
+    - COPY --from=0 /src/dist/default /usr/share/nginx/html
+    - EXPOSE 80
+  run: '["nginx", "-g", "daemon off;"]'
