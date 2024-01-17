@@ -54,7 +54,21 @@ pipeline:
 
 ```
 
-<table>
+
+Let's take a look at each of the fields in the `package.yml` file:
+
+- `name`: The name of the template.
+- `binary`: The name of the binary used to check if the template exists on the system.
+- `commands`: The list of commands to run so that a project gets generated using this template.
+- `pipeline`: The default pipeline configuration for the template to generate the `Dockerfile`. The pipeline is a list of stages, and each stage is a list of commands in that order.
+   1. `setup`: The setup stage is used to install any dependencies required by the template.
+   2. `build`: The build stage is used to build the project.
+   3. `install`: The install stage is used to install any dependencies required by the project.
+   4. `run`: The run stage is used to run the project.
+
+   The `setup` stage is added before the `build` stage, and the `install` stage is added before the `run` stage.
+
+   <table>
   <thead>
     <tr>
       <th>Pipeline</th>
@@ -89,19 +103,6 @@ ENTRYPOINT /gogin</code></pre></td>
     </tr>
   </tbody>
 </table>
-
-Let's take a look at each of the fields in the `package.yml` file:
-
-- `name`: The name of the template.
-- `binary`: The name of the binary used to check if the template exists on the system.
-- `commands`: The list of commands to run so that a project gets generated using this template.
-- `pipeline`: The default pipeline configuration for the template to generate the `Dockerfile`. The pipeline is a list of stages, and each stage is a list of commands in that order.
-   1. `setup`: The setup stage is used to install any dependencies required by the template.
-   2. `build`: The build stage is used to build the project.
-   3. `install`: The install stage is used to install any dependencies required by the project.
-   4. `run`: The run stage is used to run the project.
-
-   The `setup` stage is added before the `build` stage, and the `install` stage is added before the `run` stage.
 
 ### License
 
