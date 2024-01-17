@@ -104,6 +104,14 @@ ENTRYPOINT /gogin</code></pre></td>
   </tbody>
 </table>
 
+#### Template Variables
+
+The `package.yml` template file can contain variables that are replaced with the corresponding values when the project is generated. The variables are enclosed in double curly braces `{{}}`. The following variables are available:
+
+- `{{name}}`: The name of the project that will be generated using this template.
+- `{{codeprovider}}`: The code provider is the VCS host. For now, only GitHub is supported. The default value is `github.com`.
+- `{{namespace}}`: The namespace is the organization or user name on the code provider.
+
 ### License
 
 This project is licensed under the MIT License - see the [LICENSE](https://github.com/nurdsoft/jumpstart-templates/blob/main/LICENCE.md) file for details.
