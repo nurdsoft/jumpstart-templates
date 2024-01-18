@@ -1,0 +1,27 @@
+name: "Python 3.11: Django"
+
+binary: python3
+
+commands:
+- python3 -m venv venv
+- venv/bin/activate
+- pip3 install -r requirements.txt
+- django-admin startproject {{name}}
+
+pipeline:
+
+  setup:
+  - FROM python:3.11-alpine
+  - WORKDIR /src
+  - COPY . .
+  - RUN pip install --no-cache-dir -r requirements.txt
+
+  build:
+  - RUN adduser -D {{name}} && chown -R {{name}} /src
+
+  install:
+  - USER {{name}}
+  - EXPOSE 8000
+  - ENV PYTHONUNBUFFERED 1
+
+  run: "sh -c python {{name}}/manage.py migrate && python {{name}}/manage.py runserver 0.0.0.0:8000"
