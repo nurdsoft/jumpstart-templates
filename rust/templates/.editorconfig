@@ -1,0 +1,20 @@
+# EditorConfig is awesome: https://EditorConfig.org
+
+# Top-most EditorConfig file
+root = true
+
+# Rust files
+[*.rs]
+indent_style = space
+indent_size = 4
+charset = utf-8
+trim_trailing_whitespace = true
+insert_final_newline = true
+
+# Cargo.toml
+[Cargo.toml]
+indent_style = space
+indent_size = 4
+charset = utf-8
+trim_trailing_whitespace = true
+insert_final_newline = true
