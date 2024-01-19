@@ -3,4 +3,4 @@ name: "Elixir"
 binary: mix
 
 commands:
-- mix new {{name}}
+- mix new .
