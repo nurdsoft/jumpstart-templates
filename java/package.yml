@@ -1,0 +1,6 @@
+name: "Java 21"
+
+binary: gradle
+
+commands:
+  - gradle init --dsl groovy --type java-application --test-framework junit --project-name {{name}} --package com.{{namespace}}.{{name}} --java-version 21
