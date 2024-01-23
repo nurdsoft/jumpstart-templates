@@ -1,0 +1,6 @@
+name: "Ruby: RoR"
+
+binary: rails
+
+commands:
+  - rails new .
