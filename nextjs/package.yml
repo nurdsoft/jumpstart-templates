@@ -1,0 +1,28 @@
+name: "NextJs"
+
+binary: node
+
+commands:
+  - npx create-next-app@latest default --use-npm --typescript --eslint --tailwind false --src-dir --app --import-alias '@/*'
+  - cp -r ./default/ ./
+  - rm -rf ./default
+  - rm -rf next.config.js
+  - touch next.config.js
+  - echo "/** @type {import('next').NextConfig} */" > next.config.js
+  - echo "const nextConfig = {" >> next.config.js
+  - echo "output":" 'export'" >> next.config.js
+  - echo "};" >> next.config.js
+  - echo "module.exports = nextConfig;" >> next.config.js
+
+pipeline:
+  setup:
+    - FROM node
+    - WORKDIR /src
+    - COPY . ./
+  build:
+    - RUN npm install -f && npm run build
+  install:
+    - FROM nginx:stable-alpine
+    - COPY --from=0 /src/out /usr/share/nginx/html
+    - EXPOSE 80
+  run: '["nginx", "-g", "daemon off;"]'
